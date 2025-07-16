@@ -5,15 +5,24 @@ const typeDefs = gql`
     id: Int!
     name: String!
     email: String!
+    phone: Int
     createdAt: String!
     updatedAt: String!
   }
+  input UpdateUser {
+    name: String
+    email: String
+    phone: Int
+  }
   type Query {
     users: [User!]!
+    user(id: ID!): User!
   }
 
   type Mutation {
-    createUser(name: String!, email: String!): User!
+    createUser(name: String!, email: String!, phone: Int, createdAt: String, updatedAt: String): User!
+    updateUser(id: ID!, data: UpdateUser!): User!
+    destroyUser(id: ID!): User!
   }
 `;
 
